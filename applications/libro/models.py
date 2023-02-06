@@ -25,7 +25,7 @@ class Libro(models.Model):
     )
     autores = models.ManyToManyField(Autor)
     titulo = models.CharField(
-        max_length=50
+        max_length=40
     )
     fecha = models.DateField('Fecha de lanzamiento')
     portada = models.ImageField(upload_to='portada', null=True)

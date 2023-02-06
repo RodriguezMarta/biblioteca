@@ -1,5 +1,6 @@
 from datetime import date
 from django.db import models
+from django.db.models import Q,F
 
 
 class Persona(models.Model):
@@ -33,4 +34,9 @@ class Autor(Persona):
         super(Autor, self).save(*args, **kwargs)
     class Meta:
         verbose_name = 'Autor'
-        verbose_name_plural = 'Autores'    
+        verbose_name_plural = 'Autores' 
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(nacimiento__lte=models.F("muerte")),
+                name="error"),
+                ] 
